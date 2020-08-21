@@ -39,6 +39,47 @@ int init()
 	return 0;
 }
 
+float inputScale = 0.8f;
+float morseScale = 1.0f;
+float asciiScale = 0.9f;
+//Scale text to fit on the screen
+void scaleText()
+{	
+	//INPUT TEXT---------------------------------------------
+	size_t len = strlen(inputtedText);
+	if(len > 30)
+	{
+		inputScale = 0.7f;
+	}
+	//ASCII--------------------------------------------------
+	size_t asciLen = strlen(asciiOutput);
+	if(asciLen > 30)
+	{
+		asciiScale = 0.7f;
+	}
+
+	//MORSE--------------------------------------------------
+	size_t morLen = strlen(inputtedText);
+	if(morLen > 7 && morLen < 10)
+	{
+		morseScale = 0.9f;
+	}
+	else if(morLen > 10 && morLen < 13)
+	{
+		morseScale = 0.8f;
+	}
+	else if(morLen > 13 && morLen < 16)
+	{
+		morseScale = 0.6f;
+	}
+	else if (morLen > 16)
+	{
+		morseScale = 0.5f;
+	}
+	//-------------------------------------------------------
+
+}
+
 void drawUIText()
 {
 	u32 clrRed = C2D_Color32(0xFF, 0x00, 0x00, 0xFF);
@@ -54,6 +95,8 @@ void drawUIText()
 	C2D_TextParse(&output, textBuf, "OUTPUT");
     C2D_TextOptimize(&output);
     C2D_DrawText(&output, TEXT_DEFAULT, C2D_AlignCenter, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, 0.0f, 0.7f, 0.7f, clrRed);
+	
+	scaleText();
 
 	//Check if there are any text to be printed
 	if(!(*inputtedText == 0)) 
@@ -62,7 +105,7 @@ void drawUIText()
 		C2D_Text inputOut;
 		C2D_TextParse(&inputOut, textBuf, inputtedText);
     	C2D_TextOptimize(&inputOut);
-    	C2D_DrawText(&inputOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, 0.8f, 0.8f, clrRed);
+    	C2D_DrawText(&inputOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, inputScale, inputScale, clrRed);
 	}
 
 	if(!(*asciiOutput == 0)) 
@@ -71,16 +114,16 @@ void drawUIText()
 		C2D_Text asciiOut;
 		C2D_TextParse(&asciiOut, textBuf, asciiOutput);
     	C2D_TextOptimize(&asciiOut);
-    	C2D_DrawText(&asciiOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, 1.0f, 1.0f, clrRed);
+    	C2D_DrawText(&asciiOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, asciiScale, asciiScale, clrRed);
 	}
 
 	if(!(*morseOutput == 0)) 
-	{
+	{	
 		C2D_TextBufClear(textBuf);
 		C2D_Text morseOut;
 		C2D_TextParse(&morseOut, textBuf, morseOutput);
     	C2D_TextOptimize(&morseOut);
-    	C2D_DrawText(&morseOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, 1.0f, 1.0f, clrRed);
+    	C2D_DrawText(&morseOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, morseScale, morseScale, clrRed);
 	}
 }
 
@@ -167,7 +210,8 @@ int translateToMorse(char input[])
 
     while(segment != NULL)
     {
-        for (int s = 0; strlen(segment) > s; s++) {
+        for (int s = 0; strlen(segment) > s; s++) 
+		{
             for(int i = 0; i < 52; i++)
             {
                 if (!strncmp(&segment[s], &table[i].ascii, 1))
