@@ -87,14 +87,14 @@ void drawUIText()
 	C2D_TextBufClear(textBuf);
 	C2D_Text input;
 	C2D_TextParse(&input, textBuf, "INPUT");
-    C2D_TextOptimize(&input);
-    C2D_DrawText(&input, TEXT_DEFAULT, C2D_AlignCenter, TOP_SCREEN_HEIGHT / 4, 0.0f, 0.7f, 0.7f, clrRed);
+	C2D_TextOptimize(&input);
+	C2D_DrawText(&input, TEXT_DEFAULT, C2D_AlignCenter, TOP_SCREEN_HEIGHT / 4, 0.0f, 0.7f, 0.7f, clrRed);
 
 	C2D_TextBufClear(textBuf);
 	C2D_Text output;
 	C2D_TextParse(&output, textBuf, "OUTPUT");
-    C2D_TextOptimize(&output);
-    C2D_DrawText(&output, TEXT_DEFAULT, C2D_AlignCenter, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, 0.0f, 0.7f, 0.7f, clrRed);
+	C2D_TextOptimize(&output);
+	C2D_DrawText(&output, TEXT_DEFAULT, C2D_AlignCenter, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, 0.0f, 0.7f, 0.7f, clrRed);
 	
 	scaleText();
 
