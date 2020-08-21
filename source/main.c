@@ -388,10 +388,6 @@ int main(int argc, char **argv)
 		C2D_SceneBegin(top);
 
 		drawUIText();	
-		
-		//input and output rectangles
-		//C2D_DrawRectSolid(0, TOP_SCREEN_HEIGHT / 4, 0.0f, TOP_SCREEN_WIDTH, 25, clrBlack);
-		//C2D_DrawRectSolid(0, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, 0.0f, TOP_SCREEN_WIDTH, 25, clrBlack);
 
 		//TOP LINES
 		C2D_DrawLine(0, TOP_SCREEN_HEIGHT / 4, clrBlack, TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT / 4, clrBlack, 2.0f, 1.0f); 
