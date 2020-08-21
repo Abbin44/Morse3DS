@@ -34,7 +34,8 @@ int init()
 	textBuf = C2D_TextBufNew(256);
 
 	printf("\x1b[14;1HPress A to open keyboard.");
-	printf("\x1b[16;1HPress Start to exit.");
+	printf("\x1b[16;1HUse '/' to separate morse segments! Example(.--/-.-./---)");
+	printf("\x1b[12;1HPress Start to exit.");
 
 	return 0;
 }
