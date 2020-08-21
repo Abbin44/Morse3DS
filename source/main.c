@@ -46,19 +46,14 @@ void drawUIText()
 	C2D_TextBufClear(textBuf);
 	C2D_Text input;
 	C2D_TextParse(&input, textBuf, "INPUT");
-    C2D_TextOptimize(&input);
-    C2D_DrawText(&input, TEXT_DEFAULT, C2D_AlignCenter, TOP_SCREEN_HEIGHT / 4, 0.0f, 0.7f, 0.7f, clrRed);
+    	C2D_TextOptimize(&input);
+    	C2D_DrawText(&input, TEXT_DEFAULT, C2D_AlignCenter, TOP_SCREEN_HEIGHT / 4, 0.0f, 0.7f, 0.7f, clrRed);
 
 	C2D_TextBufClear(textBuf);
 	C2D_Text output;
 	C2D_TextParse(&output, textBuf, "OUTPUT");
-    C2D_TextOptimize(&output);
-    C2D_DrawText(&output, TEXT_DEFAULT, C2D_AlignCenter, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, 0.0f, 0.7f, 0.7f, clrRed);
-
-
-	//input and output lines
-	//C2D_DrawRectSolid(0, TOP_SCREEN_HEIGHT / 4, 0, TOP_SCREEN_WIDTH, 25, clrBlack);
-	//C2D_DrawRectSolid(0, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, 0, TOP_SCREEN_WIDTH, 25, clrBlack);
+    	C2D_TextOptimize(&output);
+    	C2D_DrawText(&output, TEXT_DEFAULT, C2D_AlignCenter, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, 0.0f, 0.7f, 0.7f, clrRed);
 
 	//Check if there are any text to be printed
 	if(!(*inputtedText == 0)) 
@@ -66,8 +61,8 @@ void drawUIText()
 		C2D_TextBufClear(textBuf);
 		C2D_Text inputOut;
 		C2D_TextParse(&inputOut, textBuf, inputtedText);
-    	C2D_TextOptimize(&inputOut);
-    	C2D_DrawText(&inputOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, 0.8f, 0.8f, clrRed);
+    		C2D_TextOptimize(&inputOut);
+    		C2D_DrawText(&inputOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, 0.8f, 0.8f, clrRed);
 	}
 
 	if(!(*asciiOutput == 0)) 
@@ -75,8 +70,8 @@ void drawUIText()
 		C2D_TextBufClear(textBuf);
 		C2D_Text asciiOut;
 		C2D_TextParse(&asciiOut, textBuf, asciiOutput);
-    	C2D_TextOptimize(&asciiOut);
-    	C2D_DrawText(&asciiOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, 1.0f, 1.0f, clrRed);
+    		C2D_TextOptimize(&asciiOut);
+    		C2D_DrawText(&asciiOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, 1.0f, 1.0f, clrRed);
 	}
 
 	if(!(*morseOutput == 0)) 
@@ -84,8 +79,8 @@ void drawUIText()
 		C2D_TextBufClear(textBuf);
 		C2D_Text morseOut;
 		C2D_TextParse(&morseOut, textBuf, morseOutput);
-    	C2D_TextOptimize(&morseOut);
-    	C2D_DrawText(&morseOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, 1.0f, 1.0f, clrRed);
+    		C2D_TextOptimize(&morseOut);
+    		C2D_DrawText(&morseOut, TEXT_DEFAULT, 5, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 17, 0.5f, 1.0f, 1.0f, clrRed);
 	}
 }
 
@@ -109,9 +104,9 @@ typedef struct
 int translateToMorse(char input[])
 {
 	morse_table_t table[52] = {
-                          {".-  ", 'A'},
-                          {"-...  ", 'B'},
-                          {"-.-.  ", 'C'},
+                          			  {".-  ", 'A'},
+                         			  {"-...  ", 'B'},
+                         			  {"-.-.  ", 'C'},
 						  {"-..  ", 'D'},
 						  {".  ", 'E'},
 						  {"..-.  ", 'F'},
@@ -137,8 +132,8 @@ int translateToMorse(char input[])
 						  {"--..  ", 'Z'},
 						  
 						  {".-  ", 'a'},
-                          {"-...  ", 'b'},
-                          {"-.-.  ", 'c'},
+                         			  {"-...  ", 'b'},
+                         		 	  {"-.-.  ", 'c'},
 						  {"-..  ", 'd'},
 						  {".  ", 'e'},
 						  {"..-.  ", 'f'},
@@ -172,7 +167,8 @@ int translateToMorse(char input[])
 
     while(segment != NULL)
     {
-        for (int s = 0; strlen(segment) > s; s++) {
+        for (int s = 0; strlen(segment) > s; s++) 
+	{
             for(int i = 0; i < 52; i++)
             {
                 if (!strncmp(&segment[s], &table[i].ascii, 1))
@@ -183,8 +179,7 @@ int translateToMorse(char input[])
         }
         segment = strtok(NULL, " ");
     }   
-    //printf(output);
-	strcpy(morseOutput, output);
+    strcpy(morseOutput, output);
 
     return 0;
 }
@@ -192,9 +187,9 @@ int translateToMorse(char input[])
 int translateFromMorse(char input[])
 {
 	morse_table_t table[26] = {
-                          {".-", 'A'},
-                          {"-...", 'B'},
-                          {"-.-.", 'C'},
+                         			  {".-", 'A'},
+                         			  {"-...", 'B'},
+                          			  {"-.-.", 'C'},
 						  {"-..", 'D'},
 						  {".", 'E'},
 						  {"..-.", 'F'},
@@ -221,10 +216,10 @@ int translateFromMorse(char input[])
 };
 
     char* segment;
-	char output[300];
+    char output[300];
 
     segment = strtok(input, "/");
-	memset(output, 0, 300);
+    memset(output, 0, 300);
 
     while(segment != NULL)
     {
@@ -237,7 +232,6 @@ int translateFromMorse(char input[])
         }
         segment = strtok(NULL, "/");
     }
-	//printf("\x1b[25;25H%s", output);
 	strcpy(asciiOutput, output);
 
     return 0;
@@ -252,7 +246,6 @@ int main(int argc, char **argv)
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
 
-	//Initialize console on top screen. Using NULL as the second argument tells the console library to use the internal console structure as current one
 	//gfxSetWide(true); // Enable wide mode
 	consoleInit(GFX_BOTTOM, NULL);
 
@@ -267,6 +260,7 @@ int main(int argc, char **argv)
 	u32 clrBlue  = C2D_Color32(0x00, 0x00, 0xFF, 0xFF);
 	u32 clrBlack = C2D_Color32(0x00, 0x00, 0x00, 0xFF);
 	u32 clrClear = C2D_Color32(0x88, 0x88, 0x88, 0x7F); //Clear - Gray
+	u32 clrCyan = C2D_Color32(0x00, 0x80, 0x80, 0xFF);
 
 	u32 clrCircle1 = C2D_Color32(0xFF, 0x00, 0xFF, 0xFF);
 	u32 clrCircle2 = C2D_Color32(0xFF, 0xFF, 0x00, 0xFF);
@@ -282,9 +276,7 @@ int main(int argc, char **argv)
 	u32 clrRec3 = C2D_Color32(0xD8, 0xF6, 0x0F, 0xFF);
 	u32 clrRec4 = C2D_Color32(0x40, 0xEA, 0x87, 0xFF);
 	
-	//Move the cursor to row 15 and column 19 and then prints "Hello World!"
-	//To move the cursor you have to print "\x1b[r;cH", where r and c are respectively
-	//the row and column where you want your cursor to move
+	//"\x1b[r;cH"
 	//The top screen has 30 rows and 50 columns
 	//The bottom screen has 30 rows and 40 columns
 
@@ -349,14 +341,18 @@ int main(int argc, char **argv)
 		}
 
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-		C2D_TargetClear(top, clrClear);
+		C2D_TargetClear(top, clrCyan);
 		C2D_SceneBegin(top);
 
 		drawUIText();	
-		
-		//input and output lines
-		C2D_DrawRectSolid(0, TOP_SCREEN_HEIGHT / 4, 0.0f, TOP_SCREEN_WIDTH, 25, clrBlack);
-		C2D_DrawRectSolid(0, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, 0.0f, TOP_SCREEN_WIDTH, 25, clrBlack);
+
+		//TOP LINES
+		C2D_DrawLine(0, TOP_SCREEN_HEIGHT / 4, clrBlack, TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT / 4, clrBlack, 2.0f, 1.0f); 
+		C2D_DrawLine(0, TOP_SCREEN_HEIGHT / 4 + 20, clrBlack, TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT / 4 + 20, clrBlack, 2.0f, 1.0f); 
+
+		//BOTTOM LINES
+		C2D_DrawLine(0, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, clrBlack, TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4, clrBlack, 2.0f, 1.0f); 
+		C2D_DrawLine(0, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 20, clrBlack, TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT - TOP_SCREEN_HEIGHT / 4 + 20, clrBlack, 2.0f, 1.0f); 
 
 		//float scaledPx = map(touch.px, 0, BOTTOM_SCREEN_WIDTH, 0, TOP_SCREEN_WIDTH);
 		//C2D_DrawCircle(touch.px, touch.py, 0, 30, clrCircle3, clrWhite, clrCircle1, clrCircle2);
